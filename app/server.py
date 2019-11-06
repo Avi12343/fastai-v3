@@ -23,7 +23,8 @@ async def download_file(url, dest):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             data = await response.read()
-            with open(dest, 'wb') as f: f.write(data.encode('latin-1'))
+            print(data)
+            with open(dest, 'wb') as f: f.write(data)
 
 async def setup_learner():
     await download_file(export_file_url, path/export_file_name)
