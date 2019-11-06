@@ -9,7 +9,7 @@ from fastai import *
 from fastai.vision import *
 
 export_file_url = 'https://drive.google.com/uc?export=download&id=1SwdP2b6Nfl_6qsT6JKXtDcxGasNemTRv'
-export_file_name = 'stage-1-resnet50'
+export_file_name = 'stage-1-resnet50.pkl'
 
 classes = ['all','hem']
 path = Path(__file__).parent
