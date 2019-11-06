@@ -29,7 +29,12 @@ async def download_file(url, dest):
 async def setup_learner():
     await download_file(export_file_url, path/export_file_name)
     try:
-        learn = load_learner(path, export_file_name)
+        from functools import partial
+        import pickle
+        pickle.load = partial(pickle.load, encoding="latin1")
+        pickle.Unpickler = partial(pickle.Unpickler, encoding="latin1")
+        learn = torch.load(path+export_file_name, map_location=lambda storage, loc: storage, pickle_module=pickle)
+        #learn = load_learner(path, export_file_name)
         return learn
     except RuntimeError as e:
         if len(e.args) > 0 and 'CPU-only machine' in e.args[0]:
