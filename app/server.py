@@ -33,7 +33,7 @@ async def setup_learner():
         import pickle
         pickle.load = partial(pickle.load, encoding="latin1")
         pickle.Unpickler = partial(pickle.Unpickler, encoding="latin1")
-        learn = torch.load(path+export_file_name, map_location=lambda storage, loc: storage, pickle_module=pickle)
+        learn = torch.load(os.path.join(path,export_file_name), map_location=lambda storage, loc: storage, pickle_module=pickle)
         #learn = load_learner(path, export_file_name)
         return learn
     except RuntimeError as e:
